@@ -10,6 +10,6 @@ class GiveAssignemtForm(forms.ModelForm):
 class SubmitAssignemtForm(forms.ModelForm):
     class Meta:
         model = SubmitAssignment
-        fields = ('answer',)
+        fields = ('full_name', 'answer',)
         
 

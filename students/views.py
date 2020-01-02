@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
-from .models import UserProfile
-from .forms import StudentProfileForm
+from .models import UserProfile, SchoolFee
+from .forms import StudentProfileForm, SchoolFeeForm
 from subjects.models import Subject, Assignment, SubmitAssignment
 from subjects.forms import SubmitAssignemtForm
 # Create your views here.
@@ -40,3 +40,16 @@ def edit_profile(request):
     return render(request, 'students/profile_form.html', {'profile_form':profile_form})
 
 
+def school_fees(request):
+    payment = SchoolFee.objects.all()
+    if request.method == 'POST':
+        fees_form = SchoolFeeForm(request.POST)
+        if fees_form.is_valid():
+            cd = fees_form.cleaned_data
+            fees_form.save()
+            return render(request, 'students/payment.html', {'email': cd.email})
+        else:
+            return HttpResponse('error encounter try again')
+    else:
+        fees_form = SchoolFeeForm()
+    return render(request, 'students/fees_form.html', locals())

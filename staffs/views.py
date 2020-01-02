@@ -7,7 +7,8 @@ from subjects.forms import GiveAssignemtForm
 def staff_index(request):
     user = get_object_or_404(StaffProfile, user=request.user)
     username = user.surname
-    
+    subjects = Subject.objects.filter(staff_name = username)
+    assignment = Assignment.objects.filter(subject=subjects)
     return render(request, 'staffs/index.html', locals())
 
 

@@ -1,4 +1,4 @@
-from .models import UserProfile
+from .models import UserProfile, SchoolFee
 from django import forms
 
 
@@ -9,3 +9,9 @@ class StudentProfileForm(forms.ModelForm):
         model = UserProfile
         exclude = ('user',)
         
+
+class SchoolFeeForm(forms.ModelForm):
+    class Meta:
+        model = SchoolFee
+        exclude = ('fees',)
+

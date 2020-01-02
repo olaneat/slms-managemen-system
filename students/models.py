@@ -1,5 +1,5 @@
 from django.db import models
-from .constants import GENDER, BLOOD_GROUP, CLASSESS, CLASS_NAME
+from .constants import GENDER, BLOOD_GROUP, CLASSESS, CLASS_NAME, TERMS
 from register.models import UserRole
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -47,10 +47,29 @@ class StudentClass(models.Model):
     class_name = models.CharField(max_length=15, choices=CLASS_NAME)
     
     class Meta:
-        ordering = ('-class_name',)
-        verbose_name = 'Student Class'
-        verbose_name_plural = 'Students Class'
+        ordering = ('class_name',)
 
     def __str__(self):
         return self.student_class
      
+
+class SchoolFee(models.Model):
+    first_name = models.CharField(max_length=200)
+    surname =models.CharField(max_length=200)
+    student_class = models.CharField(choices=CLASS_NAME, max_length=10)
+    email = models.EmailField(blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    term = models.CharField(choices=TERMS, max_length=15)
+    payment_date = models.DateField(auto_now=True)
+
+    class Meta:
+        ordering = ('-student_class', '-surname')
+        verbose_name = 'School Fee'
+        verbose_name_plural = 'School Fees'
+    
+    def __str__(self):
+        return '%s %s' % (self.surname, self.first_name)
+    
+class Fees(models.Model):
+        fees = models.DecimalField(decimal_places=2, max_digits=9, )
+        

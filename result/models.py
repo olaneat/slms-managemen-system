@@ -3,7 +3,7 @@ from subjects.models import Subject
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from students.models import UserProfile
-from .constants import TERMS
+from .constants import TERMS, GRADES
 # Create your models here.
 
 class StudentResult(models.Model):

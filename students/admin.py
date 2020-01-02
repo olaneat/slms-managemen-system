@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile , StudentClass
+from .models import UserProfile , StudentClass, SchoolFee
 
 @admin.register(UserProfile)
 class StudentProfileAdmin(admin.ModelAdmin):
@@ -9,3 +9,9 @@ class StudentProfileAdmin(admin.ModelAdmin):
 @admin.register(StudentClass)
 class StudentClassAdmin(admin.ModelAdmin):
     list_display = ['class_name', 'student_class']
+
+@admin.register(SchoolFee)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ['surname', 'first_name', 'student_class']
+    search_fields = ['student_class', 'surname']
+    

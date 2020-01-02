@@ -25,7 +25,7 @@ class StaffProfile(models.Model):
         verbose_name_plural = 'Staffs Profile'
     
     def __str__(self):
-        return self.surname
+        return '%s %s' %(self.surname, self.first_name)
 
 @receiver(post_save, sender=UserRole)
 def update_staff_profile(sender, instance, created, **kwargs):

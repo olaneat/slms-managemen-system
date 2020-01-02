@@ -15,13 +15,14 @@ class Subject(models.Model):
             
     class Meta:
         ordering = ('-name',)
-        verbose_name = 'Subject'
-        verbose_name_plural = 'Subjects'
+        verbose_name = ('Subject')
+        verbose_name_plural = ('Subjects')
 
 
 
 class SubmitAssignment(models.Model):
-    question = models.ForeignKey('Assignment', related_name='answers', blank=True, null=True on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=250 )
+    question = models.ForeignKey('Assignment', blank=True, null=True, related_name='answers', on_delete=models.CASCADE)
     answer = models.FileField(upload_to='assignments')
 
     class Meta:
@@ -30,7 +31,8 @@ class SubmitAssignment(models.Model):
         verbose_name_plural = 'Submit Assignments'
 
     def __str__(self):
-        return self.question
+        return self.full_name
+    
 
 
 class Assignment(models.Model):
