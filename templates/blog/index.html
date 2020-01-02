@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      {% if post  %}
+        <ul>
+          {% for p in post  %}
+            <p> <a href="{{p.get_absolute_url}}"> {{p.title}}</a> </p>
+          
+          {% endfor %}
+        </ul>
+      
+      {% endif %}
+    </div>
+  
+  </div>
+
+{% endblock %}
+

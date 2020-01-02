@@ -1,0 +1,31 @@
+{% extends 'new_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <p>Subject:{{assignment.subject}}<br><hr>
+        <p>Question: {{assignment.question }}<hr></p>
+        <p>Submission Deadline: {{assignment.deadline}}<hr></p>
+      
+      </div>
+      <div class="col-md-4">
+        <form enctype="multipart/form-data" method="post" action="">
+          {% csrf_token %}
+          <h3>SUBMIT ASSIGNMENT</h3>
+          <div  class="form-group">
+            <div class="form-row col-md-12">
+               {{assignment_form.answer | as_crispy_field }}
+            </div>
+          </div>
+          <input type="submit" value="submit assignment">
+        </form>
+     </div>
+    </div>
+  </div>
+
+
+
+{% endblock  %}

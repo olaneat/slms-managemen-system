@@ -1,0 +1,26 @@
+{% extends 'new_base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <img class="img-responsive" src="{{item.img.url}}">
+      </div>
+      <div class="col-md-8">
+        <h2><strong>Item Name:</strong>{{item.name}}</h2><br><hr>
+        <p><strong>Description:</strong></p><br>
+        <p>{{item.description}}</p><br><hr>
+        <p><strong>Price:</strong>N{{item.price}}</p><br><br>
+        <form action="{% url 'cart:add_to_cart'  item.id%}" method="post">
+          {% csrf_token %}
+          {{quantity_form}}
+          <input type="submit" value="Add to Cart">
+        </form>
+        
+      </div>
+    </div>
+
+  </div>
+
+{% endblock  %}

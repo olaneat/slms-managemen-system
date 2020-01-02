@@ -1,0 +1,32 @@
+<form>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <button type="submit" onclick="payButton()">pay</button>
+
+
+</form>
+
+
+<script>
+      function payButton(){
+        let handler = paystackPop.setup(
+          let currency = "{{currency}}"
+          let ref = "ref"
+          key: "pk_test_ddd702e1b555af1548a67208299d4c25c8d8c25b"
+          let info = {
+            amount: '{{amount}}',
+            email: '{{email}}',
+            amount: ,
+            currency: 'NGN',
+            ref: ''+Math.floor((Math.random() * 1000000000) + 1),
+           callback: function(response){
+              window.location.href="{{redirect_url}}&trxref=" + response.trxref
+          },
+          onClose:function(){
+            alert('window closed')
+          }
+        });
+        handler.openIframe();
+      }
+      window.onload = payButton()
+    
+    </script>

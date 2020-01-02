@@ -1,0 +1,22 @@
+{% extends 'new_base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      {% if assignment %}
+        <ul>
+          {% for home_work in assignment %}
+              <li>
+                <a href="{{home_work.get_absolute_url}}">{{home_work.question}} <br> {{homework.assignment_date}}
+              </li>
+
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p> There's no assignment yet </p>
+      {% endif %}
+     
+    </div>
+  
+  </div>
+{% endblock %}

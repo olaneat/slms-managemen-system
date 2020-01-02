@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="container">
+    <div class='row'>
+      <div class="form-group">
+        <div class="col-md-6">
+          <p>
+            <label for="username">Username:
+              <input type="text" placeholder="username" id="username">
+            </label>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <label for="password">Password:
+              <input type="password" placeholder="password" id="username">
+            </label>
+          </p>
+        </div>
+
+        <input type="submit" value="Submit" class="btn btn-success">
+      
+      </div>
+    </div>
+  
+  </div>  
+
+{% endblock %}
+
+

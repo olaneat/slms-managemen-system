@@ -1,0 +1,45 @@
+{% extends 'new_base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <table class="cart">
+        <thead>
+          <tr>
+            <td>Image</td>
+            <td>Name</td>
+            <td>Quantity</td>
+            <td>Remove</td>
+            <td>Unit Price</td>
+            <td>Price</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for value in  cart %}
+            {% with item=value.item %}
+              <tr>
+                <td>
+                  <img src="{% if item.img %}{{item.img.url}}{% endif %}" class="img-responsive" hieght="300px" width="200px">
+                </td>
+                <td> {{item.name}} </td>
+                <td> {{item.quantity}} </td>
+                <td> <a href="{% url 'cart:remove_from_cart' item.id %}">Remove Item</a></td>
+                <td class="num">N{{item.price}} </td>
+                <td class="num">N{{item.total_price}} </td>
+              </tr>
+            {% endwith %}
+          {% endfor %}
+          <tr>
+            <td>Grand Total</td>
+            <td colspan="4"></td>
+            <td class="num">N{{cart.get_total_price}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-right">
+        <a href="{% url 'shop:index' %}" class="button light">continue Shopping</a>&nbsp;
+        <a href="{% url 'cart:checkout' %}" class="button light">Checkout</a>
+      </p>
+    </div>
+  </div>
+{% endblock  %}
