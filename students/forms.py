@@ -2,6 +2,7 @@ from .models import UserProfile, SchoolFee
 from django import forms
 
 
+
 class StudentProfileForm(forms.ModelForm):
     date_of_birth = forms.DateField(help_text='form of yyyy-mm-dd')
     
@@ -13,5 +14,6 @@ class StudentProfileForm(forms.ModelForm):
 class SchoolFeeForm(forms.ModelForm):
     class Meta:
         model = SchoolFee
-        exclude = ('fees',)
+        exclude = ('payment_date',)
+
 

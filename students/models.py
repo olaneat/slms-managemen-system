@@ -57,7 +57,7 @@ class SchoolFee(models.Model):
     first_name = models.CharField(max_length=200)
     surname =models.CharField(max_length=200)
     student_class = models.CharField(choices=CLASS_NAME, max_length=10)
-    email = models.EmailField(blank=True, null=True)
+    email = models.EmailField()
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     term = models.CharField(choices=TERMS, max_length=15)
     payment_date = models.DateField(auto_now=True)

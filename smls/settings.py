@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import django_heroku
 import paystack
 import os
-from .secret import SECRET_KEY, PUBLIC_KEY
+from .secret import PAYSTACK_SECRET_KEY, PAYSTACK_PUBLIC_KEY, DJANGO_SECRET_KEY
 import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bv7l$lo69w!%$1#yip-udjh4kx+wh52$t_%k1ylfom!kxri(9o'
+SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'paystack',
-    'django_paystack',
     'result'
 ]
 
@@ -145,6 +144,6 @@ django_heroku.settings(locals())
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 prod_db = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
-SECRET_KEY = SECRET_KEY
-PUBLIC_KEY = PUBLIC_KEY
+PAYSTACK_SECRET_KEY = PAYSTACK_SECRET_KEY
+PAYSTACK_PUBLIC_KEY = PAYSTACK_PUBLIC_KEY
 CART_SESSION_ID = 'cart'

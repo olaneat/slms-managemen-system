@@ -1,0 +1,18 @@
+{% load paystack %}
+<form>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <button type='button' onclick="makePayment()">Make Payment</button>
+</form>
+
+<script>
+  function makePayment(){
+      var handler = PaystackPop.setup({
+          key: 'pk_test_ddd702e1b555af1548a67208299d4c25c8d8c25b'
+          email: '{{email}}',
+          amount: 80000,
+          currency: 'NGN'
+          ref : ''+ Math.floor((Math.random() * 1000000000 ) + 1),
+      })
+  }
+
+</script>

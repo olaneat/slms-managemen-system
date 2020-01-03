@@ -19,13 +19,13 @@ def submit_assignment(request, id):
     if request.method == 'POST':
         assignment_form = SubmitAssignemtForm(request.POST, request.FILES,)
         if assignment_form.is_valid() and assignment_form.cleaned_data:
-            new_answer = assignment_form.save(commit=False)
+            new_answer = assignment_form.save()
             new_answer.assignment = assignment
             new_answer.save()           
             return HttpResponse('Assignment successfully submited')
     else:
         assignment_form = SubmitAssignemtForm()
-    return render(request, 'subjects/assignment_detail.html', {'assignment': assignment,
+    return render(request, 'students/assignment_detail.html', {'assignment': assignment,
                                                                 'new_answer': new_answer,
                                                                 'assignment_form': assignment_form})
 
@@ -44,10 +44,9 @@ def school_fees(request):
     payment = SchoolFee.objects.all()
     if request.method == 'POST':
         fees_form = SchoolFeeForm(request.POST)
-        if fees_form.is_valid():
-            cd = fees_form.cleaned_data
+        if fees_form.is_valid() and  fees_form.cleaned_data:
             fees_form.save()
-            return render(request, 'students/payment.html', {'email': cd.email})
+            return render(request, 'students/payment.html', {'email': fees_form.cleaned_data['email']})
         else:
             return HttpResponse('error encounter try again')
     else:

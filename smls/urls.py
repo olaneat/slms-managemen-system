@@ -27,7 +27,7 @@ urlpatterns = [
     path('slms-account/', include('register.urls', namespace= 'register')),
     path('slms_shopping_cart/', include('cart.urls', namespace='cart')),
     path("slms/", include('django.contrib.auth.urls')),
-  path("paystack", include(('paystack.urls', 'paystack'),namespace='paystack')),
+    path("paystack", include(('paystack.urls', 'paystack'),namespace='paystack')),
     
 ] 
 if settings.DEBUG:
