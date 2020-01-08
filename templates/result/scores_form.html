@@ -1,0 +1,58 @@
+{% extends 'new_base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <form method="post", action="{% url 'result:add_scores' %}">
+        {% csrf_token %}
+        <div class="form-group, col-md-12">
+          <div class="col-md-6 for-row">
+            {{grade_form.full_name | as_crispy_field}}
+          </div>
+          <div class="col-md-6 for-row">
+            {{grade_form.student_number | as_crispy_field}}
+          </div>
+        </div>
+        <div class="form-group, col-md-12">
+          <div class="form-row col-md-4">
+            {{grade_form.subject | as_crispy_field}}
+          </div>
+          <div class="col-md-4 for-row">
+            {{grade_form.term | as_crispy_field}}
+          </div>
+          <div class="col-md-4 for-row">
+            {{grade_form.session | as_crispy_field}}
+          </div>
+        </div>
+        <div class="form-group, col-md-12">
+          <div class="col-md-4 for-row">
+            {{grade_form.ca_score | as_crispy_field}}
+          </div>
+          <div class="col-md-4 for-row">
+            {{grade_form.exam_score | as_crispy_field}}
+          </div>
+          <div>
+          <div class="col-md-4 form-row">
+            {{grade_form.total_score | as_crispy_field}}
+          </div>
+        </div>
+        <div class="form-group, col-md-12">
+          <div class="col-md-6 for-row">
+            {{grade_form.grade | as_crispy_field}}
+          </div>
+          <div class="col-md-6 for-row">
+            {{grade_form.comments | as_crispy_field}}
+          </div>
+        </div>
+
+      
+        <input type="Submit" value="Add value">
+      </form>
+    </div>
+    
+  </div>
+
+{% endblock  %}

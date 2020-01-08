@@ -1,0 +1,83 @@
+{% extends 'new_base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+    <h2 align='center' >TERMINAL RESULT</h2>
+      <div class="col-md-12">
+        <div class="row">
+          
+          {% if student %}
+            <div class="col-md-8">           
+              <h2><b>Name:</b> {{student.name}}</h2>    
+            </div>
+            <div class="col-md-4" >
+              <h4><b>Class: </b>{{student.student_class}}</h4>
+            </div>
+          {% endif %}
+        </div>
+        <hr>
+          
+        <div class="row">
+          {% if term %}
+            <div class="col-md-8">
+              <h4><b>Term:</b> {{term.term}}</h4>
+            </div>
+          {% endif %}
+         
+          <div class="col-md-4">
+           {% if session %}
+             <h4><b>Session: </b>{{session.session}}</h4>
+           {% endif %}            
+         </div>
+         &nbsp;&nbsp;&nbsp;
+         <hr> 
+        </div>
+        
+        <div class="row">
+          <div class="col-md-2"><h4>Subjects:</h4></div>
+          <div class="col-md-2"><h4>CA Scores:</h4></div>
+          <div class="col-md-2"><h4>Exam Scores:</h4></div>
+          <div class="col-md-2"><h4>Total Scores:</h4></div>
+          <div class="col-md-2"><h4>Grade:</h4></div>
+        </div>
+        &nbsp;&nbsp;
+        <hr>   
+       
+        <div class="row"> 
+          {% if subject_result %}
+            {% for result in subject_result %}       
+              <div class="col-md-2"><h4>{{result.subject}}</h4></div>
+              <div class="col-md-2"><h4>{{result.ca_score}}</h4></div>
+              <div class="col-md-2"><h4>{{result.exam_score}}</h4></div>
+              <div class="col-md-2"><h4>{{result.total_score}}</h4></div>
+              <div class="col-md-2"><h4>{{result.grade}}</h4></div>
+              &nbsp;&nbsp;
+              <hr>
+            {% endfor %}
+          {% endif %}    
+        </div>
+        &nbsp;&nbsp;
+        <hr>
+        <div class="row">
+        {% if result %}
+          <div class="col-md-4">
+            <p><b>class Teacher Comment:</b> {{result.comment}}          
+          </div>
+          <div class="col-md-4">
+            <p><b>Grade:</b> {{result.grade}}          
+          </div>
+          <div class="col-md-4">
+            <p><b>Postion:</b> {{result.position}}          
+          </div>
+
+
+        {% endif %}
+    </div>
+  
+  </div>
+
+
+{% endblock content %}

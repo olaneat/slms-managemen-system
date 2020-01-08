@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from .models import UserProfile, SchoolFee
+from django.contrib.auth.decorators import login_required
 from .forms import StudentProfileForm, SchoolFeeForm
 from subjects.models import Subject, Assignment, SubmitAssignment
 from subjects.forms import SubmitAssignemtForm
@@ -11,6 +12,7 @@ def student_index(request):
     assignment = Assignment.objects.filter(student_class = student_klass)
     return render(request, 'students/index.html', locals() )
 
+@login_required
 def submit_assignment(request, id):
     assignment = get_object_or_404(Assignment, id=id)
     assignment_submitted = SubmitAssignment.objects.all()
@@ -28,7 +30,7 @@ def submit_assignment(request, id):
     return render(request, 'students/assignment_detail.html', {'assignment': assignment,
                                                                 'new_answer': new_answer,
                                                                 'assignment_form': assignment_form})
-
+@login_required
 def edit_profile(request):
     if  request.method == 'POST':
         profile_form = StudentProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
@@ -39,7 +41,7 @@ def edit_profile(request):
         profile_form = StudentProfileForm()
     return render(request, 'students/profile_form.html', {'profile_form':profile_form})
 
-
+@login_required
 def school_fees(request):
     payment = SchoolFee.objects.all()
     if request.method == 'POST':

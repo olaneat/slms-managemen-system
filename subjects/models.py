@@ -3,13 +3,15 @@ from staffs.models import StaffProfile
 from django.shortcuts import reverse
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from .constants import CLASS_NAME, CLASSESS
-# Create your models here.
-class Subject(models.Model):
-    name = models.CharField(max_length= 100)
-    staff_name = models.ForeignKey(StaffProfile, on_delete=models.CASCADE)
-    subject_class = models.CharField(choices=CLASSESS, max_length=10)
+from .constants import CLASS_NAME, CLASSESS, TERMS
 
+
+
+class Subject(models.Model):
+    name = models.CharField(max_length=20)
+    subject_teacher = models.CharField(max_length=150)
+    current_term = models.CharField(max_length=15, choices=TERMS)
+    student_class = models.CharField(choices=CLASSESS, max_length=20)
     def __str__(self):
         return self.name
             

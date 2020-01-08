@@ -46,3 +46,9 @@ CLASS_NAME = (
             ('SS 3C', 'SS 3C'),
 
 )
+
+TERMS = (
+    ('FIRST TERM', 'FIRST TERM'),
+    ('SECOND TERM', 'SECOND TERM'),
+    ('THIRD TERM', 'THIRD TERM'),
+)
