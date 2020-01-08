@@ -34,12 +34,13 @@ def cart_detail(request):
 @login_required
 def checkout(request):
     cart = Cart(request)
+    total_amount = cart.get_total_price()
     if request.method == 'POST':
         checkout_form  = CheckoutForm(request.POST)
-        if checkout_form.is_valid():
-            cd = checkout_form.cleaned_data
-            cd.save()
-            return render(request, 'cart:payment.html', {'email':cd.email, 'cart':cart})
+        if checkout_form.is_valid() and checkout_form.cleaned_data:
+            checkout_form.save()
+            return render(request, 'cart/payment.html', {'email':checkout_form.cleaned_data['email'],\
+                 'total_amount':total_amount})
         else:
             return HttpResponse('Check the information, correct the errors and try again')
     else:

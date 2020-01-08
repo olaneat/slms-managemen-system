@@ -22,7 +22,7 @@
     <link href="{% static 'smls/assest/css/pdf.css' %}" rel="stylesheet">
     <link href="{% static 'smls/assest/css/style1.css' %}" rel="stylesheet">
    
-    <!--====== MAIN STYLESHEETS ======-->
+    <!--====== MAIN STYLESHEETS ======-->   
     <link href="{% static 'smls/assest/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'smls/assest/css/responsive.css' %}" rel="stylesheet">
 
@@ -56,18 +56,26 @@
                                 <li><a href="{% url 'logout' %}">Logout</a></li>
 			                  {% elif user.is_authenticated and user.is_staff %}
 			                    <p> Welcome: <strong>{{user.username}}</strong>
-			                    <li><a href="{% url 'staffs:index' %}">Home</a></li>
+			                    <li><a href="{% url 'staffs:staff_index' %}">Home</a></li>
                                 <li><a href="{% url 'staffs:profile'  %}">Edit profile</a></li> 
-		                        <li><a href="">school Events</a></li>
+		                        <li><a href="{% url 'blog:index' %}">school Events</a></li>
+                                <li><a href="{% url 'staffs:staff_index' %}">Check Submitted Assignments</a></li>
 			                    <li><a href="{% url 'result:add_scores' %}">Add Scores</a></li>
 			                    <li><a href="{% url 'staffs:give_assignment' %}">Give Assignment</a></li>
                                 <li><a href="{% url 'logout' %}">Logout</a></li>
-			                  {% else %}
+			                  {% elif user.is_authenticated and user.is_parent %}
+			                    <p> Welcome: <strong>{{user.username}}</strong>
+                                <li><a href="{% url 'students:make_payment' %}">Pay School Fees</a></li>
+                                <li><a href="{% url 'blog:index' %}">school Events</a></li>
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                              {% else %}
 			                    <li><a href="{% url 'blog:index' %}">Home</a></li>  
-	   	                        <li><a href="">school Events</a></li>
+	   	                        <li><a href="{% url 'blog:index' %}">school Events</a></li>
 			                    <li><a hre="">About</a></li>			  
 			                    <li><a href="{% url 'register:student_signup' %}">student signup</a></li>
-			                    <li><a href="{% url 'register:staff_signup' %}">staff signup</a></li>   
+			                    <li><a href="{% url 'register:staff_signup' %}">staff signup</a></li>
+                                <li><a href="{% url 'register:parent_signup' %}">Parent signup</a></li>
+                                   
                                 <li><a href="{% url 'register:user_login' %}">Login</a></li>
 			                    	   
                               {% endif %}
@@ -100,7 +108,7 @@
                             <ul>
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Portal</a></li>
-                                <li><a href="#">News & Events</a></li>
+                                <li><a href="{% url 'blog:index' %}">News & Events</a></li>
                                 <li><a href="#">Privicy Policy</a></li>
 
                                 

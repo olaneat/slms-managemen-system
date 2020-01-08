@@ -1,29 +1,29 @@
+{% extends 'new_base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-
 
 {% block content %}
   <div class="container">
     <div class="row">
-      <form method="post" action="cart:checkout">
+      <form method="post" action="{% url 'cart:checkout' %}">
         {% csrf_token %}
         <div class="col-md-12">
-          {{checkout.email | as_crispy_field}}
+          {{checkout_form.email | as_crispy_field}}
         </div>
         <div class="form-group">
-          <div class="col-md-6">
+          <div class="col-md-6 form-row">
            {{checkout_form.first_name | as_crispy_field}}          
           </div>
-          <div class="col-md-6">
-            {{checkout.surname | as_crispy_field}}  
+          <div class="col-md-6 form-row">
+            {{checkout_form.surname | as_crispy_field}}  
           </div>
         </div>
         <div class="form-group">
-          <div class="col-md-6">
-            {{checkout.phone_number | as_crispy_field}}
+          <div class="col-md-6 form-row">
+            {{checkout_form.phone_number | as_crispy_field}}
           </div>
-          <div class="col-md-6">
-            {{ checkout.student_class | as_crispy_field}}
+          <div class="col-md-6 form-row">
+            {{ checkout_form.student_class | as_crispy_field}}
           </div>
         </div>
         <input type="submit" value="checkout">

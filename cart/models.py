@@ -1,11 +1,11 @@
 from django.db import models
-from students.models import StudentClass
+from .constants import CLASS_NAME
 # Create your models here.
 class Checkout(models.Model):
     first_name = models.CharField(max_length=150)
     surname = models.CharField(max_length=150)
-    student_class = models.OneToOneField(StudentClass, on_delete=models.CASCADE)
-    email = models.EmailField(blank=True)
+    student_class = models.CharField(max_length=15, choices=CLASS_NAME)
+    email = models.EmailField()
     phone_number = models.CharField(max_length=20, blank=True,null=True)
 
     class Meta:
@@ -14,6 +14,7 @@ class Checkout(models.Model):
         verbose_name_plural = 'Checkouts'
     
     def __str__(self):
-        return self.first_name
+        return '%s %s' %(self.surname, self.first_name)
+
     
     

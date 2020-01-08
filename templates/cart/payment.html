@@ -4,13 +4,14 @@
   <button type="button" onclick="makePayment()"> Pay </button> 
 </form>
  {% for value in cart %}
-   {% with item=value.item as  %}
+   {% with item=value.item  %}
+   
      <script>
        function makePayment(){
          var handler = PaystackPop.setup({
            key: 'pk_test_ddd702e1b555af1548a67208299d4c25c8d8c25b',
            email: '{{email}}',
-           amount: '{{item.get_total_price}}',
+           amount: '{{total_amount}}',
            currency: "NGN",
            ref: ''+Math.floor((Math.random() * 1000000000) + 1),
            callback: function(response){

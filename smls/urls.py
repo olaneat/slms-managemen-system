@@ -29,6 +29,7 @@ urlpatterns = [
     path("slms/", include('django.contrib.auth.urls')),
     path("paystack", include(('paystack.urls', 'paystack'),namespace='paystack')),
     path('result', include('result.urls', namespace='result')),
+    path('parents',include('parents.urls', namespace='parents'))
     
 ] 
 if settings.DEBUG:

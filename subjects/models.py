@@ -10,6 +10,7 @@ from .constants import CLASS_NAME, CLASSESS, TERMS
 class Subject(models.Model):
     name = models.CharField(max_length=20)
     subject_teacher = models.CharField(max_length=150)
+    staff_id = models.CharField(max_length=20)
     current_term = models.CharField(max_length=15, choices=TERMS)
     student_class = models.CharField(choices=CLASSESS, max_length=20)
     def __str__(self):
@@ -34,8 +35,6 @@ class SubmitAssignment(models.Model):
 
     def __str__(self):
         return self.full_name
-    
-
 
 class Assignment(models.Model):
     topic = models.CharField(max_length= 150, blank=True)

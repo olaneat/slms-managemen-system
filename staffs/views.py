@@ -1,4 +1,9 @@
+
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+import os
+from django.conf import settings
+
+import mimetypes
 from .forms import StaffProfileForm
 from django.contrib.auth.decorators import login_required
 from .models import StaffProfile
@@ -7,10 +12,17 @@ from subjects.forms import GiveAssignemtForm
 # Create your views here.
 def staff_index(request):
     user = get_object_or_404(StaffProfile, user=request.user)
-    username = user.surname
-    subjects = Subject.objects.all()
-    assignment = Assignment.objects.all()
-    return render(request, 'staffs/index.html', locals())
+    staff = user.staff_id
+    subjects = Subject.objects.filter(staff_id = staff)
+    assignment = Assignment.objects.filter(subject = subjects)
+    return render(request, 'staffs/staff_index.html', locals())
+
+def download_assignment(request, path):
+    fl_path = os.path.join(settings.MEDIA_ROOT, path)
+    if os.path.exists(fl_path):
+        with open(fl_path, 'r') as f:
+            response = HttpResponse(f.read())
+
 
 @login_required
 def give_assignment(request):

@@ -27,6 +27,7 @@ class StaffProfile(models.Model):
     def __str__(self):
         return '%s %s' %(self.surname, self.first_name)
 
+
 @receiver(post_save, sender=UserRole)
 def update_staff_profile(sender, instance, created, **kwargs):
     if created:

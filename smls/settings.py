@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'paystack',
-    'result'
+    'result',
+    'parents',
 ]
 
 MIDDLEWARE = [

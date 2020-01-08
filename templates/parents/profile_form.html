@@ -1,0 +1,66 @@
+{% extends 'new_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <form method="post" enctype="multipart/form-data" action="{% url 'parents:create_profile' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <div class="col-md-2 form-row">
+            {{profile_form.title | as_crispy_field}}
+          </div>
+          <div  class="col-md-10 form-row">
+            {{profile_form.surname | as_crispy_field}}
+          </div>
+        </div>
+        <div class="form-group">
+          <div  class="col-md-6 form-row">
+            {{profile_form.first_name | as_crispy_field}}
+          </div>
+          <div  class="col-md-6 form-row">
+            {{profile_form.middle_name | as_crispy_field}}
+          </div>
+        </div>
+        <div class=" form-group col-md-12">
+          {{profile_form.profile_piture | as_crispy_field}}
+        </div>
+        <div class="form-group">
+          <div  class="col-md-6 form-row">
+            {{profile_form.email | as_crispy_field}}
+          </div>  
+          <div  class="col-md-6 form-row">
+            {{profile_form.phone_number | as_crispy_field}}
+          </div>
+        </div>
+        <div class="form-group">
+          <div  class="col-md-6 form-row">
+            {{profile_form.occupation | as_crispy_field}}
+          </div>
+          <div  class="col-md-6 form-row">
+            {{profile_form.date_of_birth | as_crispy_field}}
+          </div>
+        </div>
+        <div class="form-group">
+          <div  class="col-md-6 form-row">
+            {{profile_form.gender | as_crispy_field}}
+          </div>
+          <div class="form-row col-md-6">
+            {{profile_form.address | as_crispy_field}}
+          </div>
+        </div>
+        <div class="form-group">
+          <div  class="col-md-6 form-row">
+            {{profile_form.nationality | as_crispy_field}}
+          </div>
+          <div  class="col-md-6 form-row">
+            {{profile_form.state_of_origin | as_crispy_field}}
+          </div> 
+        </div>
+        <input type="submit" Value="Create Profile" class="btn success">
+      </form>
+    </div>
+  </div>
+  </div>
+{% endblock  %}``

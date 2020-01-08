@@ -31,3 +31,15 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput, max_length= 150)
 
 
+class ParentSignupForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = UserRole
+
+    @transaction.atomic
+    def save(self):
+        user = super().save(commit=False)
+        user.is_parent = True
+        user.save()
+        return user
+
+        
