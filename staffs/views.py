@@ -55,7 +55,11 @@ def  check_assignment(request):
     staff = get_object_or_404(StaffProfileForm, user=request.user)
     staff_id = staff.staff_id
     subject = Subject.objects.filter(staff_id=staff_id)
-    question = Assigment.objects.filter(question__contain='question', subject=subject)
-    
-    return render(request, 'staffs/submmited_assignment.html', {'submitted_assignment':submitted_assignment})
-
+    try:
+        question = Assigment.objects.filter(question__contain='question', subject=subject)
+    except Assignment.DoesNotExist:
+        return Http404('no Assignment given yet')
+    try:
+        return render(request, 'staffs/submmited_assignment.html', {'submitted_assignment':submitted_assignment})
+    except ValueError:
+        return Http404('Not assignment found')
