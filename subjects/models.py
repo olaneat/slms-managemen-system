@@ -34,7 +34,7 @@ class SubmitAssignment(models.Model):
         verbose_name_plural = 'Submit Assignments'
 
     def __str__(self):
-        return self.full_name
+        return self.str(question)
 
 class Assignment(models.Model):
     topic = models.CharField(max_length= 150, blank=True)

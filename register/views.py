@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
-from .forms import LoginForm, StaffSignupForm, StudentSignupForm, ParentSignupForm
+from .forms import LoginForm, StaffSignupForm, StudentSignupForm, ParentSignupForm, ClassMasterForm
 from .models import UserRole
 from django.contrib.auth.decorators import user_passes_test
 from django.views.generic import CreateView
@@ -16,7 +16,7 @@ def user_login(request):
             if user is not None:
                 if user.is_staff:
                     login(request, user)
-                    return redirect('staffs:index')
+                    return redirect('staffs:staff_index')
                 elif user.is_student:
                     login(request, user)
                     return redirect('students:index')
@@ -48,7 +48,7 @@ class StudentSignUp(CreateView):
         return redirect('students:profile')
 
     
-class StaffSignup(CreateView):
+class StaffSignUp(CreateView):
     model = UserRole
     form_class = StaffSignupForm
     template_name = 'register/signup.html'
@@ -64,7 +64,7 @@ class StaffSignup(CreateView):
         return redirect('staffs:profile')
 
 
-class ParentSignup(CreateView):
+class ParentSignUp(CreateView):
     model = UserRole
     form_class = ParentSignupForm
     template_name = 'register/signup.html'
@@ -78,3 +78,18 @@ class ParentSignup(CreateView):
         user.save()
         login(self.request, user)
         return redirect('parents:create_profile')
+
+class ClassMasterSignUp(CreateView):
+    model = UserRole
+    template_name = 'register/signup.html'
+    form_class = ClassMasterForm
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'master'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        user.save()
+        login(self.request, user)
+        return redirect('staffs:profile')

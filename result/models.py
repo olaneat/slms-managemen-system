@@ -51,7 +51,7 @@ class Term(models.Model):
 
 
 class Result(models.Model):
-    name = models.ForeignKey(Student, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=200)
     student_number = models.CharField(max_length=20, )
     term = models.ForeignKey(Term, on_delete=models.CASCADE)
     session = models.ForeignKey(Session, on_delete = models.CASCADE )
@@ -62,10 +62,10 @@ class Result(models.Model):
     date_created = models.DateField(auto_now=True)
 
     def __str__(self):
-        return str(self.name)
+        return (self.full_name)
 
     class Meta:
-        ordering = ('-name',)
+        ordering = ('-student_number', '-full_name',)
         verbose_name = 'Resut'
         verbose_name_plural = 'Result'
 

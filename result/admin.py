@@ -16,8 +16,8 @@ class SessionAdmin(admin.ModelAdmin):
 
 @admin.register(Result)
 class ResultAdmin(admin.ModelAdmin):
-    list_display = ['name', 'term', 'session']
-    search_fields = ('name',)
+    list_display = ['full_name', 'term', 'session']
+    search_fields = ('full_name', 'student_number')
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):

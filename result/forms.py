@@ -6,3 +6,8 @@ class SubjectOfferedForm(forms.ModelForm):
         model = SubjectOffered
         fields = '__all__'
 
+
+class ResultForm(forms.ModelForm):
+    models = Result
+    fields = '__all__'
+    
